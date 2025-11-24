@@ -82,23 +82,38 @@ const HeroSection = () => {
       {/* Foreground Content */}
       <div className="relative z-10 max-w-5xl w-full">
 
-        <h1 className="text-4xl md:text-6xl font-bold text-white dark:text-white light:text-gray-900 mb-4 leading-tight">
+        <h1 className="text-3xl sm:text-4xl md:text-6xl font-bold text-white dark:text-white light:text-gray-900 mb-4 leading-tight">
           Which floor are you looking at?
         </h1>
-        <p className="text-gray-300 dark:text-gray-300 light:text-gray-600 text-lg mb-10">
+        <p className="text-gray-300 dark:text-gray-300 light:text-gray-600 text-base md:text-lg mb-8 md:mb-10">
           We will take you there
         </p>
 
         {/* Main Search Box Container */}
         <div className="bg-white/95 dark:bg-white/95 light:bg-white backdrop-blur-xl rounded-2xl border border-gray-200 dark:border-gray-200 light:border-gray-300 shadow-xl pt-4">
 
-          {/* Top Tabs */}
-          <div className="flex justify-center gap-4 mb-5 px-4">
+          {/* Top Tabs - Mobile Select */}
+          <div className="md:hidden px-4 mb-5">
+            <select
+              value={activeTopTab}
+              onChange={(e) => handleTopTabChange(e.target.value)}
+              className="w-full px-4 py-2 rounded-full font-semibold text-sm bg-white border border-gray-200 text-gray-600 cursor-pointer focus:outline-none focus:ring-2 focus:ring-yellow-400"
+            >
+              {Object.keys(subTabOptions).map((tabName) => (
+                <option key={tabName} value={tabName}>
+                  {tabName}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          {/* Top Tabs - Desktop Buttons */}
+          <div className="hidden md:flex justify-center gap-2 lg:gap-4 mb-5 px-4">
             {Object.keys(subTabOptions).map((tabName) => (
               <button
                 key={tabName}
                 onClick={() => handleTopTabChange(tabName)}
-                className={`px-5 py-2 rounded-full font-semibold text-sm transition-all duration-200 cursor-pointer ${
+                className={`px-3 lg:px-5 py-2 rounded-full font-semibold text-xs lg:text-sm transition-all duration-200 cursor-pointer ${
                   activeTopTab === tabName
                     ? 'bg-yellow-400 text-black shadow-lg'
                     : 'text-gray-600 dark:text-gray-600 light:text-gray-700 dark:hover:text-yellow-600 dark:hover:bg-yellow-50 light:hover:text-yellow-600 light:hover:bg-yellow-50'
@@ -110,12 +125,12 @@ const HeroSection = () => {
           </div>
 
           {/* Category Tabs - Dynamic */}
-          <div className="flex flex-wrap justify-center gap-3 md:gap-8 border-b border-gray-200 dark:border-gray-200 light:border-gray-300 pb-4 text-gray-600 dark:text-gray-600 light:text-gray-700 mb-5 px-4">
+          <div className="flex flex-wrap justify-center gap-2 md:gap-3 lg:gap-8 border-b border-gray-200 dark:border-gray-200 light:border-gray-300 pb-4 text-gray-600 dark:text-gray-600 light:text-gray-700 mb-5 px-4">
             {currentSubTabs.map((subTabName) => (
               <button
                 key={subTabName}
                 onClick={() => setActiveSubTab(subTabName)}
-                className={`px-4 md:px-5 py-1 font-semibold transition-all duration-200 text-sm rounded-full cursor-pointer ${
+                className={`px-2 md:px-4 lg:px-5 py-1 font-semibold transition-all duration-200 text-xs md:text-sm rounded-full cursor-pointer ${
                   activeSubTab === subTabName
                     ? 'bg-yellow-500/20 border border-yellow-400 text-yellow-600 shadow-lg'
                     : 'dark:hover:text-yellow-600 dark:hover:bg-yellow-50 light:hover:text-yellow-600 light:hover:bg-yellow-50'
@@ -127,7 +142,7 @@ const HeroSection = () => {
           </div>
 
           {/* Inputs */}
-          <div className="flex flex-col md:flex-row gap-4 px-6 pb-6">
+          <div className="flex flex-col md:flex-row gap-4 px-4 md:px-6 pb-6">
 
             <div className="flex-1 bg-gray-50 dark:bg-gray-50 light:bg-gray-100 px-4 py-3 rounded-xl flex items-center justify-between border border-gray-200 dark:border-gray-200 light:border-gray-300 hover:border-yellow-400/40 transition cursor-pointer">
               <span className="text-gray-700 dark:text-gray-700 light:text-gray-800 text-sm">Cities</span>
@@ -140,7 +155,7 @@ const HeroSection = () => {
               placeholder={getPlaceholderText()}
             />
 
-            <button className="bg-yellow-400 hover:bg-yellow-500 text-black font-bold px-6 md:px-10 py-3 rounded-xl transition text-sm hover:scale-105 active:scale-95 cursor-pointer">
+            <button className="bg-yellow-400 hover:bg-yellow-500 text-black font-bold px-6 md:px-8 lg:px-10 py-3 rounded-xl transition text-sm hover:scale-105 active:scale-95 cursor-pointer">
               Explore
             </button>
           </div>

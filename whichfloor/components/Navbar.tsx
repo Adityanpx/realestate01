@@ -7,7 +7,6 @@ import { motion } from 'framer-motion';
 import { useAuth } from '../contexts/AuthContext';
 import ThemeToggle from './ThemeToggle';
 import ProfileDropdown from './ProfileDropdown';
-import SearchComponent from './SearchComponent';
 
 const Navbar: React.FC = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
